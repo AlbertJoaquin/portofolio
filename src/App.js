@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Loader from "./components/Loader";
+
+import Home from "./sections/Home";
+import About from "./sections/About";
+import Contact from "./sections/Contact";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [loading, setLoading] = useState(true);
+
+    // Smooth scroll when nav is clicked
+    const handleScroll = (id) => {
+        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    };
+
+    return (
+        <>
+            <Header handleScroll={handleScroll} />
+
+            {/* HERO / HOME */}
+            <section className='home' id="home">
+                <Home />
+            </section>
+
+            {/* ABOUT */}
+            <section className='about' id="about">
+                <About />
+            </section>
+
+            {/* CONTACT */}
+            <section className='contact' id="contact">
+                <Contact />
+            </section>
+
+            <Footer />
+
+            {loading && <Loader onFinish={() => setLoading(false)} />}
+        </>
+    );
 }
 
 export default App;
