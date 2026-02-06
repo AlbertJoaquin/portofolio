@@ -233,7 +233,7 @@ html {
 .title-wrapper {
     max-width: 800px;
     margin: 20px;
-    padding-right: 10px;
+    padding-right: 5px;
 }
 
 .title-wrapper h1 {
@@ -281,9 +281,8 @@ html {
     gap: 0.5rem;          /* space between text and icon */
 }
 
-
-
 .contact {
+    background: #121212;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
