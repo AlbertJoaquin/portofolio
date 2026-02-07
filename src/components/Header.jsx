@@ -40,7 +40,7 @@ export default function Header({ handleScroll }) {
                 </div>
 
                 <ul className="nav-right">
-                    <li className='nav-item' onClick={() => handleClick("contact")}>Hit me</li>
+                    <li className='nav-item' onClick={() => handleClick("contact")}>Contact</li>
                 </ul>
             </div>
         </nav>

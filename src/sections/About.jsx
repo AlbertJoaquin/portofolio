@@ -11,7 +11,7 @@ export default function About() {
                      alt="Albert Enselada"
                      loading="eager"
                      decoding="async"
-                     fetchpriority="high"/>
+                     fetchPriority="high"/>
             </div>
 
             <div className="aboutme-content">
@@ -38,5 +38,6 @@ export default function About() {
                 </div>
             </div>
         </div>
+
     )
 }
