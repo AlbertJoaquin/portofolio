@@ -600,7 +600,7 @@ html {
     }
 
     .thumbs-icon {
-        margin: 0 auto 20px auto; /* center the icon and add spacing */
+        margin: 0 auto; /* center the icon and add spacing */
     }
 
     .right-contact {
