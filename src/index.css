@@ -302,6 +302,14 @@ html {
     position: relative;
 }
 
+.contactForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
 .contact::before {
     content: '';
     position: absolute;
@@ -374,6 +382,7 @@ html {
 }
 
 .line-separator {
+    position: absolute;
     top: 0;
     z-index: 10;
     width: 100%;
@@ -383,20 +392,16 @@ html {
     background: #1e1e1e;
 }
 
-.contactForm {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin: 10px;
-}
 
 .left-contact {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    top: 85px;
+    top: 200px;
     position: relative;
     max-width: 550px;
     margin: 0 auto;
+    padding: 20px;
 }
 
 .thumbs-icon {
@@ -439,6 +444,49 @@ html {
     font-style: italic;
 }
 
+.right-contact {
+    display: flex;
+    flex-direction: column;
+    top: 200px;
+    position: relative;
+    padding: 0 30px;
+    width: 100%;
+    max-width: 700px;
+    box-sizing: border-box;
+}
+
+.right-contact form {
+    width: 100%;
+    max-width: 100%;
+}
+
+.right-contact label {
+    display: block;
+    font-size: clamp(0.7rem, 2vw, 1em);
+    color: #ccc;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.right-contact input,
+.right-contact textarea {
+    width: 100%;
+    max-width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    background: #1e1e1e;
+    border: 1px solid #444;
+    color: #ccc;
+    border-radius: 5px;
+}
+
+.right-contact button {
+    display: flex;
+    justify-self: flex-end;
+}
 
 /* Responsive below 1024px */
 @media (max-width: 1024px) {
@@ -524,16 +572,22 @@ html {
         text-align: center;
     }
 
+    .contact {
+        height: auto;
+    }
+
     .contactForm {
         grid-template-columns: 1fr;
-        gap: 20px;
-        margin: 10px 5px;
+        padding: 0 20px;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
     .left-contact {
         top: 0;
+        margin: 0;
+        padding-bottom: 0;
         max-width: 800px;
-        padding: 20px;
     }
 
     .left-contact h1 {
@@ -547,6 +601,20 @@ html {
 
     .thumbs-icon {
         margin: 0 auto 20px auto; /* center the icon and add spacing */
+    }
+
+    .right-contact {
+        top: 0;
+        margin: 0 auto;
+        max-width: 650px;
+        padding: 25px;
+        box-sizing: border-box; /* ADD THIS */
+    }
+
+    .right-contact input,
+    .right-contact textarea {
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .logo {

@@ -10,12 +10,25 @@ export default function Contact() {
                 <div className="left-contact">
                     <div className="thumbs-icon"><FontAwesomeIcon icon={faComment} size="2x" color="#23c483"/></div>
                     <h1>Hit me up!</h1>
-                    <p>Looking to collaborate or have a question?
+                    <p>
+                        Looking to collaborate or have a question?
                         Drop me a message here, and I’ll get back to you promptly.
-                        Let’s create something awesome together.</p>
+                        Let’s create something awesome together.
+                    </p>
                 </div>
                 <div className="right-contact">
+                      <form>
+                            <label htmlFor="name"> Name</label>
+                            <input type="text" id="name" name="name" required/>
 
+                            <label htmlFor="email"> Email</label>
+                            <input type="email" id="email" name="email" required/>
+
+                            <label htmlFor="message">Your Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+
+                            <button type="submit">Send Message</button>
+                      </form>
                 </div>
             </div>
         </div>
