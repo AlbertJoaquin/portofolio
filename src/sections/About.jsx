@@ -1,6 +1,6 @@
 import '../index.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faReact, faHtml5, faJava, faPhp, faCss, faJs} from "@fortawesome/free-brands-svg-icons";
+import { faReact, faHtml5, faJava, faPhp, faCss, faJs, } from "@fortawesome/free-brands-svg-icons";
 import { faDatabase} from "@fortawesome/free-solid-svg-icons";
 
 export default function About() {

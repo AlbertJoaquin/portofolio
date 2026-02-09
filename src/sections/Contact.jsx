@@ -24,10 +24,10 @@ export default function Contact() {
                             <label htmlFor="email"> Email</label>
                             <input type="email" id="email" name="email" required/>
 
-                            <label htmlFor="message">Your Message</label>
+                            <label htmlFor="message">Message</label>
                             <textarea id="message" name="message" rows="5" required></textarea>
 
-                            <button type="submit">Send Message</button>
+                            <button type="submit">Let’s connect</button>
                       </form>
                 </div>
             </div>
