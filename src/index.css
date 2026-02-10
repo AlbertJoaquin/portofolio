@@ -713,6 +713,11 @@ textarea:focus {
         box-sizing: border-box;
     }
 
+    .right-contact button {
+        margin-left: auto; /* still pushes to right */
+    }
+
+
     .logo {
         position: absolute;
         left: 50%;
@@ -757,6 +762,10 @@ textarea:focus {
         display: flex;
         justify-content: center;
         gap: 20px;
+    }
+
+    .right-contact button {
+        margin-left: auto; /* still pushes to right */
     }
 
 }
