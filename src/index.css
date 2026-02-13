@@ -582,6 +582,32 @@ textarea:focus {
     min-height: 15px; /* reserve space even if empty */
 }
 
+/* Hide the icon completely */
+.custom-toast-popup-success .swal2-icon {
+    display: none !important;
+}
+
+.custom-toast-popup-error .swal2-icon {
+    display: none !important;
+}
+
+.custom-toast-title {
+    font-size: clamp(0.875rem, 2vw, 1rem) !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+}
+
+/* Custom style for the toast progress bar */
+.custom-toast-popup-success .swal2-timer-progress-bar {
+    background-color: #0E5E40 !important;
+}
+
+.custom-toast-popup-error .swal2-timer-progress-bar {
+    background-color: #702614 !important;
+}
+
+
+
 @keyframes shine {
     0% {
         background-position: 200% 0;

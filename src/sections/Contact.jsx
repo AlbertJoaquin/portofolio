@@ -2,36 +2,36 @@ import '../index.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment } from "@fortawesome/free-solid-svg-icons";
 import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
-import { useState, useRef } from "react";
 
+import { useState, useRef } from "react";
+import emailjs from '@emailjs/browser';
+import Swal from 'sweetalert2'; // ADD THIS
 
 export default function Contact() {
-
     const [values, setValues] = useState({
-       name: "",
-       email: "",
-       message: ""
+        name: "",
+        email: "",
+        message: ""
     });
 
     const nameRef = useRef(null);
     const emailRef = useRef(null);
     const messageRef = useRef(null);
-
+    const formRef = useRef(null);
 
     const [errors, setErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleChange = (e) => {
-        setValues(
-            {
-                ...values,
-                [e.target.name]: e.target.value,
-            }
-        );
+        setValues({
+            ...values,
+            [e.target.name]: e.target.value,
+        });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        let newErrors ={};
+        let newErrors = {};
 
         if(!values.name.trim()){
             newErrors.name = "Name cannot be empty";
@@ -58,11 +58,82 @@ export default function Contact() {
             messageRef.current.focus();
         }
 
-
         setErrors(newErrors);
 
+        // If no errors, send email
         if(Object.keys(newErrors).length === 0){
-            console.log("Form Submitted");
+            setIsSubmitting(true);
+
+            emailjs
+                .sendForm(
+                    'service_5p3zrch',
+                    'template_e9ie70l',
+                    formRef.current,
+                    'Al3Lr4brd0MWnhN8g'
+                )
+                .then(
+                    () => {
+                        console.log('SUCCESS!');
+
+                        // Success notification
+                        Swal.fire({
+                            toast: true,
+                            position: "top-end",
+                            icon: "success",
+                            iconColor: 'transparent', // ADD THIS
+                            title: "Message sent successfully!",
+                            showConfirmButton: false,
+                            timer: 1500,
+                            timerProgressBar: true,
+                            width: "auto",
+                            padding: "0.75rem 1rem",
+                            background: "#1e1e1e",
+                            color: "#cccccc",
+                            customClass: {
+                                popup: 'custom-toast-popup-success',
+                                title: 'custom-toast-title'
+                            },
+                            showClass: { popup: "animate__animated animate__fadeInRight" },
+                            hideClass: { popup: "animate__animated animate__fadeOutRight" },
+                            didOpen: (toast) => {
+                                toast.style.marginTop = '80px'; // Adjust this value to move it down
+                            }
+                        });
+
+                        setValues({ name: "", email: "", message: "" }); // Clear form
+                        setIsSubmitting(false);
+                    },
+                    (error) => {
+                        console.log('FAILED...', error.text);
+
+                        // Error notification
+                        Swal.fire({
+                            toast: true,
+                            position: "top-end",
+                            icon: "error",
+                            iconColor: 'transparent', // ADD THIS
+                            title: "Failed to send message.",
+                            showConfirmButton: false,
+                            timer: 1500,
+                            timerProgressBar: true,
+                            width: "auto",
+                            padding: "0.75rem 1rem",
+                            background: "#1e1e1e",
+                            color: "#cccccc",
+                            customClass: {
+                                popup: 'custom-toast-popup-error',
+                                title: 'custom-toast-title'
+                            },
+                            showClass: { popup: "animate__animated animate__fadeInRight" },
+                            hideClass: { popup: "animate__animated animate__fadeOutRight" },
+                            didOpen: (toast) => {
+                                toast.style.marginTop = '80px'; // Adjust this value to move it down
+                            }
+                        });
+
+                        setIsSubmitting(false);
+                    }
+                );
         }
     }
 
@@ -75,12 +146,12 @@ export default function Contact() {
                     <h1>Hit me up!</h1>
                     <p>
                         Looking to collaborate or have a question?
-                        Drop me a message here, and I’ll get back to you promptly.
-                        Let’s create something awesome together.
+                        Drop me a message here, and I'll get back to you promptly.
+                        Let's create something awesome together.
                     </p>
                 </div>
                 <div className="right-contact">
-                    <form onSubmit={handleSubmit}>
+                    <form ref={formRef} onSubmit={handleSubmit}>
                         <label htmlFor="name"> Name</label>
                         <input type="text" id="name"
                                ref={nameRef}
@@ -95,7 +166,6 @@ export default function Contact() {
                                 </>
                             )}
                         </p>
-
 
                         <label htmlFor="email"> Email</label>
                         <input type="email" id="email"
@@ -112,10 +182,10 @@ export default function Contact() {
                             )}
                         </p>
 
-                    <label htmlFor="message">Message</label>
-                    <textarea id="message"
-                              name="message"
-                              ref={messageRef}
+                        <label htmlFor="message">Message</label>
+                        <textarea id="message"
+                                  name="message"
+                                  ref={messageRef}
                                   value={values.message}
                                   rows="5"
                                   onChange={handleChange}
@@ -128,8 +198,11 @@ export default function Contact() {
                             )}
                         </p>
 
-                        <button type="submit">Let’s connect</button>
+                        <button type="submit" disabled={isSubmitting}>
+                            {isSubmitting ? 'Sending...' : "Let's connect"}
+                        </button>
                     </form>
+
                 </div>
             </div>
         </div>
