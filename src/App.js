@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Loader from "./components/Loader";
@@ -12,26 +12,37 @@ function App() {
     const [loading, setLoading] = useState(true);
 
     // Smooth scroll when nav is clicked
-    const handleScroll = (id) => {
-        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    const homeRef = useRef(null);
+    const aboutRef = useRef(null);
+    const contactRef = useRef(null);
+
+    const handleScroll = (section) => {
+        let ref;
+
+        if (section === "home") ref = homeRef;
+        else if (section === "about") ref = aboutRef;
+        else if (section === "contact") ref = contactRef;
+
+        ref.current.scrollIntoView({ behavior: "smooth" });
     };
+
 
     return (
         <>
             <Header handleScroll={handleScroll} />
 
             {/* HERO / HOME */}
-            <section className='home' id="home">
-                <Home />
+            <section className='home' ref={homeRef}>
+                <Home/>
             </section>
 
             {/* ABOUT */}
-            <section className='about' id="about">
+            <section className='about' ref={aboutRef}>
                 <About />
             </section>
 
             {/* CONTACT */}
-            <section className='contact' id="contact">
+            <section className='contact' ref={contactRef}>
                 <Contact />
             </section>
 

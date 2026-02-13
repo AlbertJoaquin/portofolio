@@ -476,7 +476,7 @@ html {
     width: 100%;
     max-width: 100%;
     padding: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     box-sizing: border-box;
     background: #1e1e1e;
     border: 1px solid #444;
@@ -573,6 +573,13 @@ textarea:focus {
 }
 .reserved p {
    margin: 30px;
+}
+
+.error {
+    color: #e30022;
+    font-size: clamp(0.8rem, 0.8rem + 0.2vw, 0.90rem);
+    margin-top: 4px;
+    min-height: 15px; /* reserve space even if empty */
 }
 
 @keyframes shine {
